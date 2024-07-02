@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
-	"os/exec"	
+	"os/exec"
 )
 
 func runGitCommand(args ...string) error {
@@ -11,7 +11,7 @@ func runGitCommand(args ...string) error {
 	cmd.Stdout = log.Writer()
 	cmd.Stderr = log.Writer()
 	return cmd.Run()
-} 
+}
 
 func main() {
 	// // Define the remote repository URLs
@@ -35,11 +35,11 @@ func main() {
 
 	// Push changes to both repositories
 	fmt.Println("Pushing changes to Github and Gitea...")
-	err = runGitCommand("push","github","main")
+	err = runGitCommand("push", "github", "main")
 	if err != nil {
 		log.Fatalf("Failed to push to Github: %v", err)
 	}
-	err = runGitCommand("push","gitea","master")
+	err = runGitCommand("push", "gitea", "master")
 	if err != nil {
 		log.Fatalf("Failed to push to Gitea: %v", err)
 	}
