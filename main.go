@@ -1,29 +1,18 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
+	"guess/functions"
 	"log"
-	"os"
 )
 
 func main() {
-	file, err := os.Open("/home/oumouma/guess-it-1/data.txt")
+	filename := "/home/oumouma/guess-it-1/data.txt"
+	lines, err := functions.ReadFileLines(filename)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("Error reading %s: %v", filename, err)
 	}
-	defer file.Close()
+	fmt.Println("Finished reading the file.")
+	fmt.Println("LInes read from file:", lines)
 
-	scanner := bufio.NewScanner(file)
-
-	for scanner.Scan() {
-		fmt.Println(scanner.Text())
-	}
-
-	if err := scanner.Err(); err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println("FInished reading the file.")
-
-	PushUpdates()
 }
