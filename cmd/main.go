@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"os"
 
-	"guess/stats"
 	"guess/utils"
 )
 
@@ -16,17 +15,10 @@ func main() {
 
 	fileName := os.Args[1]
 	// Sample Data
-	data, err := utils.Reader(fileName)
+	xs, ys, err := utils.Reader(fileName)
 	if err != nil {
 		fmt.Println("Error: ", err)
 		return
 	}
-
-	fmt.Println("Data :- ", data, "\n")
-	// Perform linear regression
-	slope, intercept := stats.LinearRegression(data)
-
-	// Output results
-	fmt.Printf("Slope: %.2f\n", slope)
-	fmt.Printf("Intercept: %.2f\n", intercept)
+	utils.Output(xs, ys)
 }
