@@ -22,37 +22,39 @@ func LinearRegression(ys []float64) (slope, intercept float64) {
 
 	// Calculate intercept (b0)
 	intercept = (sumY - slope*sumX) / n
-	// fmt.Println("xs := ", xs)
 	return slope, intercept
 }
 
-// Function to calculate the range the next number may fall and predic the next number employing the linear regression model.
-func Prectidor(x, slope, intercept float64) (float64, float64, float64) {
+// Predictor makes predictions and calculates residuals
+func Prectidor(x, y, slope, intercept float64) (float64, float64, float64) {
 	guess := (slope * x) + intercept
-
-	residual := x - guess
-
+	residual := y - guess
 	return x, guess, residual
 }
 
+// Calculate returns the upper and lower bounds for predictions
 func CalculateRange(guessArray []float64, stdError float64) (float64, float64) {
 	var upperB, lowerB float64
 
 	for _, guess := range guessArray {
-		upperB = guess - (stdError * 2)
-		lowerB = guess + (stdError * 2)
+		upperB = guess + (stdError * 3)
+		lowerB = guess - (stdError * 3)
 	}
 	return upperB, lowerB
 }
 
-// Function to calculate Variance of the residuals
+// StandardError calculates the standard error of the residuals
 func StandardError(residuals []float64) float64 {
 	n := len(residuals)
-	var ssd, stdError float64
+	var ssd float64
+
+	if n <= 2 {
+		return math.NaN()
+	}
 
 	for _, num := range residuals {
 		ssd += num * num
-		stdError = ssd / float64(n-2)
 	}
+	stdError := ssd / float64(n-2)
 	return float64(math.Sqrt(stdError))
 }
