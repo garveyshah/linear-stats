@@ -3,13 +3,13 @@ package main
 import (
 	"fmt"
 
-	"guess/utils"
+	"linear/utils"
 )
 
 func main() {
-	//fmt.Println("Usage : go run . <fileName>\nExample : go run . data.txt")
+	// fmt.Println("Usage : go run . <fileName>\nExample : go run . data.txt")
 
-	//fileName := os.Args[1]
+	// fileName := os.Args[1]
 	// Sample Data
 	xs, ys, err := utils.Reader()
 	if err != nil {

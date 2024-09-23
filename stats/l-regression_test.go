@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"guess/utils"
+	"linear/utils"
 )
 
 // Helper function for comparing floating-point numbers

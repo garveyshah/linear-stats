@@ -3,7 +3,7 @@ package utils
 import (
 	"fmt"
 
-	"guess/stats"
+	"linear/stats"
 )
 
 func Output(xs, ys []float64) {
@@ -28,5 +28,4 @@ func Output(xs, ys []float64) {
 		fmt.Printf("\n\033[032mx:	\033[0m %.2f\n\033[032mUpperB:\033[0m %.2f\n\033[032mLowerB:\033[0m %.2f\n\033[032mResidual:\033[0m %.2f\n\n", x, upperB, lowerB, residual)
 
 	}
-
 }
