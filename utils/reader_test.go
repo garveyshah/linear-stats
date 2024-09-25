@@ -16,7 +16,8 @@ func TestReader(t *testing.T) {
 	}
 
 	for _, tc := range tt {
-		xs, ys, err := Reader(tc.input)
+	ys, err := Reader(tc.input)
+	var xs []float64
 
 		if err != tc.err {
 			t.Fatalf("Test for %q Failed - error type mismatch, got= %q want %q", tc.input, err, tc.err)

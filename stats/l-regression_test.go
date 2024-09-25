@@ -17,7 +17,7 @@ func TestLRegression(t *testing.T) {
 	testData := []string{"../test_data/data1.txt", "data2.txt", "data3.txt"}
 
 	for _, dataFile := range testData {
-		_, ys, err := utils.Reader(dataFile)
+		ys, err := utils.Reader(dataFile)
 		if err != nil {
 			t.Fatalf("Failed to read data from %q: %v", dataFile, err)
 		}
@@ -33,7 +33,7 @@ func TestLRegression(t *testing.T) {
 		}
 
 		// Linear regression calculation for the current dataset
-		slope, intercept := LinearRegression(ys)
+		slope, intercept, _, _, _ := LinearRegression(ys)
 
 		for i, tc := range tt {
 			tolerance := 0.0001 // Defination of a tolerance for floating-point comparison

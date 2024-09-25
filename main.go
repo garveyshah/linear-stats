@@ -2,16 +2,21 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"linear/utils"
 )
 
 func main() {
-	// fmt.Println("Usage : go run . <fileName>\nExample : go run . data.txt")
+	if len(os.Args) != 2 {
+		fmt.Println("Usage : go run . <fileName>\nExample : go run . data.txt")
+		return
+	}
 
-	// fileName := os.Args[1]
+	fileName := os.Args[1]
 	// Sample Data
-	xs, ys, err := utils.Reader()
+	var xs []float64
+	ys, err := utils.Reader(fileName)
 	if err != nil {
 		fmt.Println("Error: ", err)
 		return
