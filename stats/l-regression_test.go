@@ -12,9 +12,9 @@ func isAlmostEqual(a, b, tolerance float64) bool {
 	return math.Abs(a-b) <= tolerance
 }
 
-func TestLRegression(t *testing.T) {
+func TestLinearRegression(t *testing.T) {
 	// Files containing test data
-	testData := []string{"../test_data/data1.txt", "data2.txt", "data3.txt"}
+	testData := []string{"../test_data/data1.txt", "../test_data/data2.txt", "../test_data/data3.txt"}
 
 	for _, dataFile := range testData {
 		ys, err := utils.Reader(dataFile)
@@ -26,17 +26,23 @@ func TestLRegression(t *testing.T) {
 		tt := []struct {
 			slope     float64
 			intercept float64
+			r 			float64
+			err error
 		}{
-			{-8.7429, 153.8573},
+			{-0.999247, 552.465663, -0.9986787077,nil},
 			// {0.8, 1.2},
 			// {-0.4, 3.5},
 		}
 
 		// Linear regression calculation for the current dataset
-		slope, intercept, _, _, _ := LinearRegression(ys)
+		r, slope, intercept,err := LinearRegression(ys)
 
 		for i, tc := range tt {
 			tolerance := 0.0001 // Defination of a tolerance for floating-point comparison
+
+			if !isAlmostEqual(r, tc.slope, tolerance) {
+				t.Fatalf("Test for %q")
+			}
 
 			if !isAlmostEqual(slope, tc.slope, tolerance) {
 				t.Fatalf("Test for %q Failed  (case %d) - wrong slope, got= %f, want= %f", dataFile, i, slope, tc.slope)
