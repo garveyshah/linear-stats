@@ -26,16 +26,16 @@ func TestLinearRegression(t *testing.T) {
 		tt := []struct {
 			slope     float64
 			intercept float64
-			r 			float64
-			err error
+			r         float64
+			err       error
 		}{
-			{-0.999247, 552.465663, -0.9986787077,nil},
+			{-0.999247, 552.465663, -0.9986787077, nil},
 			// {0.8, 1.2},
 			// {-0.4, 3.5},
 		}
 
 		// Linear regression calculation for the current dataset
-		r, slope, intercept,err := LinearRegression(ys)
+		r, slope, intercept, err := LinearRegression(ys)
 
 		for i, tc := range tt {
 			tolerance := 0.0001 // Defination of a tolerance for floating-point comparison
