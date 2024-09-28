@@ -5,7 +5,7 @@ import (
 	"os"
 
 	"linear/common"
-	"linear/utils"
+	"linear/stats"
 )
 
 func main() {
@@ -16,11 +16,18 @@ func main() {
 
 	fileName := os.Args[1]
 	// Sample Data
-	var xs []float64
+	//var xs []float64
 	ys, err := common.Reader(fileName)
 	if err != nil {
 		fmt.Println("Error: ", err)
 		return
 	}
-	utils.Output(xs, ys)
+
+	r, slope, intercept, err := stats.LinearRegression(ys)
+	if err != nil {
+		fmt.Printf("\033[033mLinear Regression Line:\033[0m		y = %.6fx, + %.6f\n", slope, intercept)
+		fmt.Printf("\033[033mPearson Correlation Coefficient:	\033[0m %v\n", err)
+	}
+	fmt.Printf("\033[033mLinear Regression Line:\033[0m		y = %.6fx, + %.6f\n", slope, intercept)
+	fmt.Printf("\033[033mPearson Correlation Coefficient:	\033[0m %10.10f\n", r)
 }
