@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"linear/common"
 	"linear/utils"
 )
 
@@ -16,7 +17,7 @@ func main() {
 	fileName := os.Args[1]
 	// Sample Data
 	var xs []float64
-	ys, err := utils.Reader(fileName)
+	ys, err := common.Reader(fileName)
 	if err != nil {
 		fmt.Println("Error: ", err)
 		return
