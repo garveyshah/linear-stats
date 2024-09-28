@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"linear/utils"
+	"linear/common"
 )
 
 // Helper function for comparing floating-point numbers
@@ -17,7 +17,7 @@ func TestLinearRegression(t *testing.T) {
 	testData := []string{"../test_data/data1.txt", "../test_data/data2.txt", "../test_data/data3.txt"}
 
 	for _, dataFile := range testData {
-		ys, err := utils.Reader(dataFile)
+		ys, err := common.Reader(dataFile)
 		if err != nil {
 			t.Fatalf("Failed to read data from %q: %v", dataFile, err)
 		}
